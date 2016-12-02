@@ -23,6 +23,6 @@ The pathway learn function takes arguments of:
 Returned is an object with parameters:
 
 1.	Predication accuracy rate.
-2.	List of Genes in each pathway
+2.	List of Genes in each pathway.
 3.	A list of predictions for each sample within each pathway.
 4.	The coefficient values of each gene within each pathway.
