@@ -1,5 +1,5 @@
 # PathwayLearn
-Machine learning applied to RNA-seq pathway analysis
+Machine learning applied to RNA-seq pathway analysis (Publication Pending)
 
 Authors: David Venuto, Wanling Yang
 
