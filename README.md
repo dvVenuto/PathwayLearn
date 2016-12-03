@@ -9,7 +9,7 @@ The University Of Hong Kong
 __ __
 The PathwayLearn function applies L1 regularized logistic regression to RNA-seq count data sets to identify significantly deregulated KEGG pathways.  An AUC is generated for each pathway after training and testing the model and pathways are ranked in by AUC.  We propose that the AUC is roughly proportional to the level of deregulation.  Coefficients for each gene within a pathway are also reported, which are proportional to there predictive power of the gene in classifying the sample's expression signature.
 
-The pathway learn function takes arguments of:
+The PathwayLearn function takes arguments of:
 
 1.	A training data frame representing the data you wish to train the algorithm on.
 2.	A testing or holdout data frame.
