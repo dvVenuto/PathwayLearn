@@ -8,8 +8,6 @@
 ##             Author: David Venuto
 ###############################################################################################################
 
-load("/home/yfwang/dvenuto/learned_Lungs.RData")
-
 predict.pathways <-
   function(train_df,
            cat_1_end_train,
@@ -277,16 +275,3 @@ predict.pathways <-
   }
 
 
-train <- CDS_Colon_Cleaned
-
-  learned_Colon <- predict.pathways(
-    train_df = train,
-    cat_1_end_train = 227,
-    alph = 0,
-    cond1_name = "case",
-    cond2_name = "control",
-    qnorm = FALSE,
-    voom_norm = TRUE,
-    folds = 5
-  )
-save.image("/home/yfwang/dvenuto/Leaned_AUC_Colon_RIDGE.RData")
