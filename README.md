@@ -1,6 +1,8 @@
 # PathwayLearn
 Machine learning applied to RNA-seq pathway analysis (Publication Pending)
 
+Full package release after publication.
+
 Authors: David Venuto, Wanling Yang
 
 The University Of Hong Kong
