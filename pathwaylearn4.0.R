@@ -8,6 +8,7 @@
 ##             Author: David Venuto
 ###############################################################################################################
 
+#Function Decleration
 predict.pathways <-
   function(train_df,
            cat_1_end_train,
@@ -18,13 +19,12 @@ predict.pathways <-
            voom_norm = FALSE,
            folds = 5) {
     
-    ### LOAD PACKAGES #############################################################################################
-   
+    #Load Packages   
     library(ROCR)
     library(glmnet)
     library(edgeR)
     
-    ### QUANTILE NORMALIZATION SCRIPT #############################################################################
+    #Quantile Normalization of Count Dataset
         
     quantile_normalisation <- function(df) {
       df_rank <- apply(df, 2, rank, ties.method = "min")
@@ -40,7 +40,7 @@ predict.pathways <-
       return(df_final)
     }
     
-    ### PARAMETER DECLERATION ######################################################################################
+    
     
     if (qnorm == TRUE) {
       train_df <- (quantile_normalisation(train_df))
@@ -52,7 +52,7 @@ predict.pathways <-
       train_df <- data.frame(cpm(train_df))
     }
     
-    ### VARIABLE DECLERATION ########################################################################################
+    # Variable declerations
     
     cat1_list_train <- list()
     cat2_list_train <- list()
@@ -62,7 +62,10 @@ predict.pathways <-
     MIM_cond1 <- list()
     ROC_permute <- list()
     MIM_cond2 <- list()
+    
+    #Required Object	  
     Kegg <- Kegg
+	  
     coe_list <- list()
     MIM_change <- list()
     avg_change <- NULL
@@ -83,7 +86,7 @@ predict.pathways <-
       print("AUC curve cannot be calculated with less than 10 category 2 observations per fold")
     }
     
-    ### BUILD PATHWAY TRAINING STRUCTURE #############################################################################
+    # BUILD PATHWAY TRAINING STRUCTURE using Kegg list
     
     for (i in 1:nrow(Kegg)) {
       pathway_genes_cat1 <- data.frame(genes_list[i])
@@ -169,6 +172,7 @@ predict.pathways <-
           )
 	labels <- c(rep(0,HoldoutSize),rep(1,HoldoutSize))
 	AUC_pred <- prediction((pred),labels)
+        #preformence calculations, AUC
 	pref <- performance(AUC_pred,"auc")
 	pred <-
           predict(
@@ -192,11 +196,12 @@ predict.pathways <-
 	})
       }	
       else{
+	#GLMnet fail since not enough observations in each class
         print("Not enough observations")
       }
     }
 
-## FIND SUCCESS RATE #####################################################################################
+# FIND SUCCESS RATE 
     
     suc = 0
     fail = 0
@@ -224,7 +229,7 @@ predict.pathways <-
     
     suc <- suc / (suc + fail)
     
-    ### BUILD OUTPUT ###########################################################################################
+    #Build object structure for output.
     
    PathwayLearnData = function(suc,
                                 genes_list,
