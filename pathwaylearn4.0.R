@@ -108,8 +108,8 @@ predict.pathways <-
       cat1_list_train[[i]] <- pathway_genes_cat1
       cat2_list_train[[i]] <- pathway_genes_cat2
     }
-            
-    ### LEARN AND PREDICT PATHWAYS ##############################################################################
+
+#GLMnet commands
     
     ROCList <- data.frame(AUCval=0)
     
